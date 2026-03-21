@@ -1,5 +1,5 @@
 yfinance
 ddgs
 langgraph
-langchain-google-genai
+langchain-openai
 python-dotenv
