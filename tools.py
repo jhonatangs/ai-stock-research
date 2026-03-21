@@ -17,6 +17,9 @@ def get_stock_data(ticker: str) -> str:
             f"Current Price: {info.get('currentPrice', 'N/A')} {info.get('currency', 'N/A')}\n"
             f"P/E Ratio (Trailing PE): {info.get('trailingPE', 'N/A')}\n"
             f"Profit Margin: {info.get('profitMargins', 'N/A')}\n"
+            f"Operating Margin: {info.get('operatingMargins', 'N/A')}\n"
+            f"Revenue Growth: {info.get('revenueGrowth', 'N/A')}\n"
+            f"Return on Equity (ROE): {info.get('returnOnEquity', 'N/A')}\n"
             f"Debt to Equity Ratio: {info.get('debtToEquity', 'N/A')}\n"
             f"Business Summary: {str(info.get('longBusinessSummary', 'N/A'))[:500]}..."
         )

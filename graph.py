@@ -57,9 +57,16 @@ def analyst_node(state: AgentState):
     print("\n[Analyst] Drafting the investment report...")
     
     system_prompt = (
-        "You are a Senior Equity Analyst. "
-        "Write a concise, professional investment memo based ONLY on the provided data. "
-        "Format in Markdown. Include sections: Company Overview, Financial Health, Recent News, and Conclusion."
+        "You are a Senior Equity Analyst at a top-tier investment bank. "
+        "Write a high-quality, professional investment memo based ONLY on the provided data. "
+        "Use a sophisticated tone. Format in clean Markdown. "
+        "Include the following sections:\n"
+        "1. **Investment Summary**: A high-level overview and your final rating (Buy/Hold/Sell).\n"
+        "2. **Company Overview**: Key business segments and market position.\n"
+        "3. **Financial Analysis**: Deep dive into metrics (P/E, Margins, Growth, ROE, Debt). Compare them to industry norms where possible based on your internal knowledge if the data supports it.\n"
+        "4. **News & Market Sentiment**: Synthesis of recent news and current market narrative.\n"
+        "5. **Risk Factors**: Specific risks identified from the data.\n"
+        "6. **Conclusion & Outlook**: Final verdict and future expectations."
     )
     
     user_prompt = f"""
@@ -86,10 +93,10 @@ def reviewer_node(state: AgentState):
     
     system_prompt = (
         "You are the CIO. Review the following investment memo. "
-        "It must be strictly based on the provided data, contain financial metrics (like P/E and Margins), "
-        "and have no hallucinations. "
-        "Respond with 'APPROVED' if it is excellent. "
-        "If it needs work, respond with 'REJECTED' followed by specific instructions on what to fix."
+        "It must be strictly based on the provided data, contain key financial metrics, and have no hallucinations. "
+        "Verify that it includes P/E, Margins, Growth, and Debt-to-Equity if available. "
+        "Respond with 'APPROVED' if it is excellent and ready for a client. "
+        "If it is missing data actually provided in the prompt or contains hallucinations, respond with 'REJECTED' followed by specific instructions."
     )
     
     messages = [
@@ -148,11 +155,15 @@ if __name__ == "__main__":
     
     # Run the graph
     final_state = app.invoke(initial_state)
-    
-    print("\n================ FINAL REPORT ================\n")
-    print(final_state["report"])
-    
     # Save the report to a markdown file
+    report_content = final_state["report"].strip()
+    if report_content.startswith("```markdown"):
+        report_content = report_content[11:].strip()
+    if report_content.startswith("```"):
+        report_content = report_content[3:].strip()
+    if report_content.endswith("```"):
+        report_content = report_content[:-3].strip()
+
     with open("report.md", "w", encoding="utf-8") as f:
-        f.write(final_state["report"])
+        f.write(report_content)
     print("\n[System] Report saved to report.md")
