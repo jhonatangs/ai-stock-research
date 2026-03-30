@@ -1,6 +1,6 @@
 # AI Stock Research Agent (Autonomous Loop)
 
-A stateful, autonomous AI agent designed to research, analyze, and draft institutional-grade investment memos for publicly traded companies. Developed as part of the Drýs Capital AI Engineering challenge.
+A stateful, autonomous AI agent designed to research, analyze, and draft institutional-grade investment memos for publicly traded companies.
 
 This project implements an autonomous development and execution loop inspired by the `karpathy/autoresearch` pattern, utilizing an AI terminal agent (Antigravity) to orchestrate the workflow.
 
@@ -39,9 +39,9 @@ antigravity "read the antigravity_prompt.md file and execute the instructions"
 ## 💡 Bonus: Product Idea (AI-Native CRM Integration)
 
 **The Portfolio Co-Pilot**
-The underlying architecture of this agent (LangGraph + RAG/Web Search + LLM Routing) can be directly integrated into the AI-native CRM currently being explored by Drýs Capital. 
+The underlying architecture of this agent (LangGraph + RAG/Web Search + LLM Routing) can be directly integrated into the AI-native CRM. 
 
 Instead of a passive address book, the CRM becomes an active Co-Pilot:
 - The system periodically runs this exact graph for every asset held in a client's portfolio.
 - If the `Analyst Node` detects a fundamental shift (e.g., a sudden drop in profit margins or a regulatory news catalyst), it triggers an alert.
-- A new `Communications Node` cross-references this shift with the client's risk profile and automatically drafts a proactive, personalized email for the Drýs Capital advisor to review and send.
+- A new `Communications Node` cross-references this shift with the client's risk profile and automatically drafts a proactive, personalized email for advisor to review and send.
