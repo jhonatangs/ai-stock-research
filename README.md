@@ -35,13 +35,3 @@ If you have Antigravity (or Claude Code / OpenClaw) installed, simply pass the m
 antigravity "read the antigravity_prompt.md file and execute the instructions"
 ```
 *The agent will read the instructions, execute the LangGraph pipeline, monitor the state transitions, and save the final verified output to `report.md`.*
-
-## 💡 Bonus: Product Idea (AI-Native CRM Integration)
-
-**The Portfolio Co-Pilot**
-The underlying architecture of this agent (LangGraph + RAG/Web Search + LLM Routing) can be directly integrated into the AI-native CRM. 
-
-Instead of a passive address book, the CRM becomes an active Co-Pilot:
-- The system periodically runs this exact graph for every asset held in a client's portfolio.
-- If the `Analyst Node` detects a fundamental shift (e.g., a sudden drop in profit margins or a regulatory news catalyst), it triggers an alert.
-- A new `Communications Node` cross-references this shift with the client's risk profile and automatically drafts a proactive, personalized email for advisor to review and send.
